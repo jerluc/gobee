@@ -22,7 +22,7 @@ func NewFrameBuffer(rw io.ReadWriter) *FrameBuffer {
 func (fb *FrameBuffer) WriteFrame(frame Frame) (n int, err error) {
 	frameBytes := PackBytes(
 		FrameHeader,
-		Uint16ToBytes(len(frame.FrameData())),
+		Uint16ToBytes(uint(len(frame.FrameData()))),
 		frame.FrameData(),
 		Checksum(frame.FrameData()),
 	)
@@ -60,7 +60,7 @@ func (fb *FrameBuffer) ReadFrame() Frame {
 		if fb.readByte() == FrameHeader {
 			lengthBytes := fb.readBytes(2)
 			length := BytesToUint16(lengthBytes)
-			frameData := fb.readBytes(length)
+			frameData := fb.readBytes(int(length))
 			checksum := fb.readByte()
 			if VerifyChecksum(frameData, checksum) {
 				return BuildFrame(frameData)

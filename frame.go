@@ -45,7 +45,7 @@ func (g *GenericFrame) FrameData() []byte {
 }
 
 func (g *GenericFrame) String() string {
-	return fmt.Sprintf("Generic: [Type: %X, RawData: %X]", g.Type, g.RawData)
+	return fmt.Sprintf("GenericFrame[Type: %X, RawData: %X]", g.Type, g.RawData)
 }
 
 // Represents a 64-bit addressed TX frame
@@ -77,7 +77,7 @@ func (tx *Tx64Frame) FrameData() []byte {
 }
 
 func (tx *Tx64Frame) String() string {
-	return fmt.Sprintf("TX: [ID: %X, Destination: %X, Options: %X, Data: %s]",
+	return fmt.Sprintf("TX64[ID: %X, Destination: %X, Options: %X, Data: %s]",
 		tx.ID, tx.Destination, tx.Options, string(tx.Data))
 }
 
@@ -100,7 +100,7 @@ func (tx *TxStatusFrame) FrameData() []byte {
 }
 
 func (tx *TxStatusFrame) String() string {
-	return fmt.Sprintf("TX-Status: [ID: %X, Status: %X]", tx.ID, tx.Status)
+	return fmt.Sprintf("TX-Status[ID: %X, Status: %X]", tx.ID, tx.Status)
 }
 
 // Represents a 64-bit addressed RX frame
@@ -132,7 +132,7 @@ func (rx *Rx64Frame) FrameData() []byte {
 }
 
 func (rx *Rx64Frame) String() string {
-	return fmt.Sprintf("RX: [Source: %X, RSSI: %X, Options: %X, Data: %s]",
+	return fmt.Sprintf("RX[Source: %X, RSSI: %X, Options: %X, Data: %s]",
 		rx.Source, rx.RSSI, rx.Options, string(rx.Data))
 }
 

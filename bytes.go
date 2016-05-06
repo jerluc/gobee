@@ -24,7 +24,7 @@ func VerifyChecksum(data []byte, receivedChecksum byte) bool {
 
 // Converts an unsigned 16-bit integer to a 2-byte
 // big Endian array
-func Uint16ToBytes(n int) []byte {
+func Uint16ToBytes(n uint) []byte {
 	buff := bytes.NewBuffer([]byte{})
 	binary.Write(buff, binary.BigEndian, uint16(n))
 	return buff.Bytes()
@@ -32,11 +32,11 @@ func Uint16ToBytes(n int) []byte {
 
 // Converts a 2-byte big Endian array into an
 // unsigned 16-bit integer
-func BytesToUint16(b []byte) int {
+func BytesToUint16(b []byte) uint {
 	var n uint16
 	buff := bytes.NewBuffer(b)
 	binary.Read(buff, binary.BigEndian, &n)
-	return int(n)
+	return uint(n)
 }
 
 // Takes a variable number of single bytes or byte
@@ -50,6 +50,8 @@ func PackBytes(parts ...interface{}) []byte {
 			packet = append(packet, b)
 		case []byte:
 			packet = append(packet, b...)
+		case string:
+			packet = append(packet, []byte(b)...)
 		}
 	}
 	return packet
