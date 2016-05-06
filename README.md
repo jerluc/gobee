@@ -5,14 +5,20 @@ gobee
 
 A simple Go library for working with ZigBee/XBee modules over a serial interface.
 
-## Usage
+### Installation
+
+```
+go get github.com/jerluc/gobee
+```
+
+### Usage
 
 TBW
 
-## Contributing
+### Contributing
 
 TBW
 
-## License
+### License
 
 [Apache License Version 2.0](LICENSE)
